@@ -1,0 +1,32 @@
+<!-- barra de navegacion-->   
+<nav class="justify-content-between" style="left: 8px; top: 10px; background-color: #6e6e6e77; backdrop-filter: blur(5px);border-radius: 1rem; position: fixed; width: 99%; z-index: 1;">
+
+    <div class="laterales">
+        <h2 style="margin: 10px;">Learn Code</h2>
+    </div>
+
+    <ul style="list-style: none; display: flex;">
+
+        <li style="margin: 10px;" class="boton <?= $namePage === 'dashboard.php' ? 'boton-oro' : 'boton-amarillo' ?>">
+            <a href="dashboard.php" class="negro"> Panel de Control </a> 
+        </li>
+
+    </ul>
+
+    <div class="laterales">
+        <div class="justify-content-end">
+            <div class="avatar-perfil">
+                <div class="font-perfil">
+                    <p>Nombre de Usuario</p>
+                </div>
+                <img src="img/img2.jpg" alt="avatar" class="img-perfil">
+            </div>
+            <ul class="dropdown" style="display: none;">
+                <li><a style="color: #000000;" href="index.php">Inicio</a></li>
+                <hr style="margin:0">
+                <li><a style="color: #000000;" href="db/cerrar_sesion.php">Cerrar Sesion</a></li>
+            </ul>  
+        </div>
+    </div>
+
+</nav>
