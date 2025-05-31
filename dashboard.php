@@ -5,6 +5,23 @@
     }else{
         header('location:login.php');
     }
+
+    if(isset($_SESSION['mensaje-exito'])){
+        echo 'bien';
+    }
+
+    // incluimos conexion a la base de datos
+    include('db/conn.php');
+
+    // consulta sql
+    $sql = 'SELECT * FROM galeria';
+
+    //ejecutar la consulta sql
+    $ejecutar = $conn->query($sql);
+
+    //crear array
+    $galeria = $ejecutar->fetchAll(PDO::FETCH_ASSOC);
+
     $namePage = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -41,18 +58,41 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Imagen 1</td>
-                <td>Descripcion de la imagen 1</td>
-                <td>2025-03-15</td>                
-                <td class="boton-center">
-                    <button class="mx-1 boton boton-oro negro">Editar</button>
-                    <button class="mx-1 boton boton-amarillo negro">Eliminar</button>
-                </td>
-            </tr>
+            <?php foreach($galeria as $campo){ ?>
+                <tr>
+                    <td><?= $campo['nombre'] ?></td>
+                    <td><?= $campo['descrip'] ?></td>
+                    <td><?= $campo['fecha'] ?></td>                
+                    <td class="boton-center">
+                        <form action="editar.php" method="post">
+                            <input type="hidden" name="id" value="<?= $campo['id'] ?>">
+                            <button class="mx-1 boton boton-oro negro">Editar</button>
+                        </form>
+                        <form action="db/eliminar.php" method="post" id="eliminar<?= $campo['id'] ?>">
+                            <input type="hidden" name="id" value="<?= $campo['id'] ?>">
+                            <button id="botonEliminar" type="button" class="mx-1 boton boton-amarillo negro">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
     
     <script src="JavaScript/js.js"></script>
+    <script>
+        const botonEliminar = document.querySelector('#botonEliminar');
+        const formulario = document.querySelector('#eliminar<?= $campo['id'] ?>');
+
+        botonEliminar.addEventListener('click', ()=>{
+            confirm('Seguro de Eliminar este Registro!?');
+            if (confirm == true) {
+                formulario.submit;
+            }
+            else{
+                formulario.preventDefault();
+            }
+        });
+
+    </script>
 </body>
 </html>

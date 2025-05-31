@@ -1,5 +1,11 @@
 <?php
+    // incluir conexion
+    include('db/conn.php');
 
+    $sql = 'SELECT * FROM galeria';
+    $ejecutar = $conn->query($sql);
+    $imagenes = $ejecutar->fetchAll(PDO::FETCH_ASSOC);
+    
     $namePage = basename($_SERVER['PHP_SELF']);
 
 ?>
@@ -24,59 +30,13 @@
     <!-- galeria -->
     <section class="contenido-galeria">
 
+    <?php foreach($imagenes as $imagen){  ?>
         <div class="item">
-            <img src="img/lobo1.png" class="img" alt="imagen 1">
-            <h3>Imagen 1</h3>
-            <p>descripcion completa de esta foto</p>
+            <img src="<?= $imagen['imgRut'] ?>" class="img" alt="imagen 1">
+            <h3><?= $imagen['nombre'] ?></h3>
+            <p><?= $imagen['descrip'] ?></p>
         </div>
-
-        <div class="item">
-            <img src="img/leon3.png" class="img" alt="imagen 4">
-            <h3>Imagen 6</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/lobo2.png" class="img" alt="imagen 4">
-            <h3>Imagen 2</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/leon4.png" class="img" alt="imagen 2">
-            <h3>Imagen 7</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/leon7.png" class="img" alt="imagen 4">
-            <h3>Imagen 6</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/lobo3.png" class="img" alt="imagen 2">
-            <h3>Imagen 3</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/lobo4.png" class="img" alt="imagen 3">
-            <h3>Imagen 4</h3>
-            <p>descripcion completa de esta foto</p> 
-        </div>
-
-        <div class="item">
-            <img src="img/leon2.png" class="img" alt="imagen 1">
-            <h3>Imagen 5</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
-
-        <div class="item">
-            <img src="img/leon10.png" class="img" alt="imagen 3">
-            <h3>Imagen 8</h3>
-            <p>descripcion completa de esta foto</p>
-        </div>
+    <?php } ?>
 
     </section>
     
