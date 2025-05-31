@@ -15,7 +15,7 @@ $namePage = basename($_SERVER['PHP_SELF']);
 <body style="margin:0; background-image: url(img/sabana2.jpg); background-size: cover; background-repeat: no-repeat">
 
     <section style="width:100vw; height:100vh; display: flex; justify-content: center; align-items: center;">
-        <form action="db/registro.php" method="post" class="form-login">
+        <form action="db/registro.php" enctype="multipart/form-data" method="post" class="form-login">
             <div style="width: 100%; flex-direction: column;display: flex;justify-content: center; align-items: center;">
                 <h1 style="color:#000000; text-align: center;">Registro de Usuario</h1>
                 <input required type="text" name="nombre" placeholder="Nombre"><br>

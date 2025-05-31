@@ -1,16 +1,11 @@
 <?php
     session_start();
-
     if(isset($_SESSION['sesion'])){
         $_SESSION['sesion'] = true;
-    }
-    
-    else{
+    }else{
         header('location:login.php');
     }
-
     $namePage = basename($_SERVER['PHP_SELF']);
-
 ?>
 
 <!DOCTYPE html>
@@ -50,24 +45,6 @@
                 <td>Imagen 1</td>
                 <td>Descripcion de la imagen 1</td>
                 <td>2025-03-15</td>                
-                <td class="boton-center">
-                    <button class="mx-1 boton boton-oro negro">Editar</button>
-                    <button class="mx-1 boton boton-amarillo negro">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Imagen 2</td>
-                <td>Descripcion de la imagen 2</td>
-                <td>2025-03-15</td>
-                <td class="boton-center">
-                    <button class="mx-1 boton boton-oro negro">Editar</button>
-                    <button class="mx-1 boton boton-amarillo negro">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Imagen 3</td>
-                <td>Descripcion de la imagen 3</td>
-                <td>2025-03-15</td>
                 <td class="boton-center">
                     <button class="mx-1 boton boton-oro negro">Editar</button>
                     <button class="mx-1 boton boton-amarillo negro">Eliminar</button>
