@@ -1,6 +1,20 @@
 <?php
+    session_start();
 
-$namePage = basename($_SERVER['PHP_SELF']);
+    $mensajeError = '';
+    $mensajeExito = '';
+
+    if (isset($_SESSION['mensaje-exito'])) {
+        $mensajeExito = $_SESSION['mensaje-exito'];
+        unset($_SESSION['mensaje-exito']);
+    }
+    
+    if (isset($_SESSION['mensaje-error'])) {
+        $mensajeError = $_SESSION['mensaje-error'];
+        unset($_SESSION['mensaje-error']);
+    }
+
+    $namePage = basename($_SERVER['PHP_SELF']);
 
 ?>
 
@@ -26,11 +40,11 @@ $namePage = basename($_SERVER['PHP_SELF']);
 
         <img src="img/lobo7.png" class="img-fluid" alt="">
 
-        <form action="registro.php" method="post" class="contenido-center">
+        <form action="db/registro.galeria.php" method="post" class="contenido-center" enctype="multipart/form-data">
 
-            <input type="text" value="" name="" placeholder="nombre" id="nombre"><br><br>
-            <input type="text" placeholder="descripcion" name="descripcion"><br><br>
-            <input type="date" placeholder="fecha" name="fecha"><br><br>
+            <input type="text" value="" name="name" placeholder="nombre" id="nombre"><br><br>
+            <input type="text" placeholder="descripcion" name="desc"><br><br>
+            <input type="date" placeholder="fecha" name="date"><br><br>
             <center><label for="img" class="boton-oro negro boton" style="cursor: pointer; ">Cargar Imagen</label></center>
             <input type="file" id="img" placeholder="Cargar Imagen" style="display: none;" name="img" accept="image/*" multiple><br><br>
             <center><button type="submit" class="boton-oro negro boton">Enviar</button></center>
@@ -40,6 +54,18 @@ $namePage = basename($_SERVER['PHP_SELF']);
         <img src="img/leon1.png" class="img-fluid" alt="">
         
     </section>
+
+    <?php if(!empty($mensajeExito)){ ?>    
+        <script>
+            alert('Registro Exitoso');
+        </script>
+    <?php } ?>
+    
+    <?php if(!empty($mensajeError)){ ?>    
+        <script>
+            alert('No se pudo Registrar la Imagen');
+        </script>
+    <?php } ?>
 
 </body>
 </html>
