@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     if(isset($_SESSION['sesion'])){
         $_SESSION['sesion'] = true;
     }else{
@@ -84,12 +85,12 @@
         const formulario = document.querySelector('#eliminar<?= $campo['id'] ?>');
 
         botonEliminar.addEventListener('click', ()=>{
-            confirm('Seguro de Eliminar este Registro!?');
-            if (confirm == true) {
-                formulario.submit;
+            let confirmacion = confirm('Seguro de Eliminar este Registro!?');
+            if (confirmacion == true) {
+                formulario.submit();
             }
             else{
-                formulario.preventDefault();
+                alert('Accion cancelada!');
             }
         });
 

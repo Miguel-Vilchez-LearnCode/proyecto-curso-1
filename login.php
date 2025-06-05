@@ -51,6 +51,9 @@
                 <div class="d-flex">
                     <button type="submit" name="boton" style="color:black" class="boton-amarillo boton mx-1">Iniciar Sesion</button>
                     <a href="registro.form.php" style="color:black" class="boton-oro boton mx-1">Registrarse</a>
+                </div><br>
+                <div class="d-flex">
+                    <a href="index.php">Volver al Inicio</a>
                 </div>
             </div>
         </form>
