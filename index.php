@@ -16,7 +16,7 @@ $namePage = basename($_SERVER['PHP_SELF']);
 
     <!-- <button id="boton-tema" class="tema-oscuro" type="button">Oscurecer</button> -->
 
-    <?php include('navBar.html'); ?>    
+    <?php include('navBar.html'); ?>  
 
     <!-- titulo -->
     <div style="background-image:url(img/sabana.jpg); background-size: cover; height: 100vh; background-repeat:no-repeat; background-attachment:fixed;">

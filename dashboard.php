@@ -2,7 +2,7 @@
     session_start();
 
     if(isset($_SESSION['sesion'])){
-        $_SESSION['sesion'] = true;
+        $id = $_SESSION['sesion'];
     }else{
         header('location:login.php');
     }
@@ -14,11 +14,15 @@
     // incluimos conexion a la base de datos
     include('db/conn.php');
 
+    $sqlUsuario = 'SELECT * FROM user WHERE id ='.$id;
+    $ejecutarUser = $conn->query($sqlUsuario);
+    $Usuario = $ejecutarUser->fetch(PDO::FETCH_ASSOC);
+
     // consulta sql
-    $sql = 'SELECT * FROM galeria';
+    $sqlGaleria = 'SELECT * FROM galeria';
 
     //ejecutar la consulta sql
-    $ejecutar = $conn->query($sql);
+    $ejecutar = $conn->query($sqlGaleria);
 
     //crear array
     $galeria = $ejecutar->fetchAll(PDO::FETCH_ASSOC);
@@ -71,7 +75,7 @@
                         </form>
                         <form action="db/eliminar.php" method="post" id="eliminar<?= $campo['id'] ?>">
                             <input type="hidden" name="id" value="<?= $campo['id'] ?>">
-                            <button id="botonEliminar" type="button" class="mx-1 boton boton-amarillo negro">Eliminar</button>
+                            <button onclick="eliminar(<?= $campo['id'] ?>)" type="button" class="mx-1 boton boton-amarillo negro">Eliminar</button>
                         </form>
                     </td>
                 </tr>
@@ -81,21 +85,20 @@
     
     <script src="JavaScript/js.js"></script>
     <script>
-        const botonEliminar = document.querySelector('#botonEliminar');
-        const formulario = document.querySelector('#eliminar<?= $campo['id'] ?>');
+        function eliminar(id){
 
-        botonEliminar.addEventListener('click', ()=>{
+            const formulario = document.querySelector('#eliminar'+id);
 
-            confirm('Seguro de Eliminar este Registro!?');
+            let confirmMens = confirm('Seguro de Eliminar este Registro!?');
 
-            if (confirmacion == true) {
-                formulario.submit;
+            if (confirmMens) {
+                formulario.submit();
             }
             else{
-                
+                alert('accion cancelada');
             }
-        });
 
+        }
     </script>
 </body>
 </html>

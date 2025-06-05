@@ -17,12 +17,14 @@
         <div class="justify-content-end">
             <div class="avatar-perfil">
                 <div class="font-perfil">
-                    <p>Nombre de Usuario</p>
+                    <p><?= $Usuario['nombre'].' '.$Usuario['apellido'] ?></p>
                 </div>
                 <img src="img/img2.jpg" alt="avatar" class="img-perfil">
             </div>
             <ul class="dropdown" style="display: none;">
                 <li><a style="color: #000000;" href="index.php">Inicio</a></li>
+                <hr style="margin:0">
+                <li><a style="color: #000000;" href="editarUser.php">Editar Usuario</a></li>
                 <hr style="margin:0">
                 <li><a style="color: #000000;" href="db/cerrar_sesion.php">Cerrar Sesion</a></li>
             </ul>  

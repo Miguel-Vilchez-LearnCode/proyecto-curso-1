@@ -30,7 +30,7 @@
             // condicional para validar si las credenciales ingresadas coinciden con las registradas en la base de datos
             if ($array['userName'] == $usuario && $array['pass'] === $clave) {
                 session_start();
-                $_SESSION['sesion'] = false;
+                $_SESSION['sesion'] = $array['id'];
                 header('location:../dashboard.php');
             }
             else{ // si no se cumple la condicional anterior, ejecutamos el siguiente codigo

@@ -1,9 +1,19 @@
 <?php
     session_start();
 
+    if(isset($_SESSION['sesion'])){
+        $id = $_SESSION['sesion'];
+    }else{
+        header('location:login.php');
+    }
+
     include('db/conn.php');
 
-    $id = 2;
+    $sqlUsuario = 'SELECT * FROM user WHERE id ='.$id;
+    $ejecutarUser = $conn->query($sqlUsuario);
+    $Usuario = $ejecutarUser->fetch(PDO::FETCH_ASSOC);
+
+    $id = $_POST['id'];
 
     $sql = 'SELECT * FROM galeria WHERE id = :id';
     $ejecutar = $conn->prepare($sql);
@@ -11,8 +21,6 @@
     $ejecutar->execute();
 
     $imagen = $ejecutar->fetch(PDO::FETCH_ASSOC);
-
-    print_r($imagen);
 
     $namePage = basename($_SERVER['PHP_SELF']);
 
@@ -42,8 +50,11 @@
 
         <form action="db/editar.php" method="post" class="contenido-center">
 
+            <label>Nombre:</label>
             <input type="text" value="<?= $imagen['nombre'] ?>" name="name" placeholder="nombre" id="nombre"><br><br>
+            <label>Descripcion:</label>
             <input type="text" value="<?= $imagen['descrip'] ?>" placeholder="descripcion" name="desc"><br><br>
+            <label>Fecha:</label>
             <input type="date" value="<?= $imagen['fecha'] ?>" placeholder="fecha" name="date"><br><br>
             <input type="hidden" value="<?= $imagen['id'] ?>" name="id">
             <center><button type="submit" class="boton-oro negro boton">Editar</button></center>
