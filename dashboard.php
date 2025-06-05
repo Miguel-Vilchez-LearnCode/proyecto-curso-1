@@ -85,12 +85,14 @@
         const formulario = document.querySelector('#eliminar<?= $campo['id'] ?>');
 
         botonEliminar.addEventListener('click', ()=>{
-            let confirmacion = confirm('Seguro de Eliminar este Registro!?');
+
+            confirm('Seguro de Eliminar este Registro!?');
+
             if (confirmacion == true) {
-                formulario.submit();
+                formulario.submit;
             }
             else{
-                alert('Accion cancelada!');
+                
             }
         });
 
